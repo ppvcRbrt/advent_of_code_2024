@@ -8,7 +8,54 @@ namespace Day1_HistorianHysteria
 {
     public static class ListHelper
     {
+        //--------------------------------------------------------------------------------
+        //------------------------------- PART 2 -----------------------------------------
+        //--------------------------------------------------------------------------------
+        public static int GetOccurencesInList(int value, int[] list1)
+        {
+            int occurences = 0;
+            foreach(var item in list1)
+            {
+                if (item == value)
+                {
+                    occurences++;
+                }
+            }
+            return occurences;
+        }
 
+        public static Dictionary<int, int> CalculateOccurences(int[] list1, int[] list2) 
+        {
+            Dictionary<int, int> occurences = new Dictionary<int, int>();
+            foreach (var value in list1)
+            {
+                if(!occurences.Keys.Contains(value))
+                {
+                    occurences.Add(value, GetOccurencesInList(value, list2));
+                }
+            }
+            return occurences;
+        }
+
+        public static int CalcualteTotalSimilarity(int[] list1, Dictionary<int, int> occurencesDict)
+        {
+            int totalSimilarity = 0;
+            foreach(int value in list1)
+            {
+                if(occurencesDict.ContainsKey(value))
+                {
+                    totalSimilarity += occurencesDict[value] * value;
+                }
+            }
+            return totalSimilarity;
+        }
+        //--------------------------------------------------------------------------------
+        //------------------------------- PART 2 -----------------------------------------
+        //--------------------------------------------------------------------------------
+
+        //--------------------------------------------------------------------------------
+        //------------------------------- PART 1 -----------------------------------------
+        //--------------------------------------------------------------------------------
         public static int GetTotalDistance(int[] list1, int[] list2)
         {
             int totalDistance = 0;
@@ -58,6 +105,8 @@ namespace Day1_HistorianHysteria
                     break;
             }
         }
-
+        //--------------------------------------------------------------------------------
+        //------------------------------- PART 1 -----------------------------------------
+        //--------------------------------------------------------------------------------
     }
 }

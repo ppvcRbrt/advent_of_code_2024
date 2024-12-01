@@ -10,4 +10,7 @@ ListHelper.BubbleSort(leftList, leftList.Length);
 ListHelper.BubbleSort(rightList, rightList.Length);
 
 int totalDistance = ListHelper.GetTotalDistance(leftList, rightList);
-Console.WriteLine(totalDistance);
+
+Dictionary<int, int> occurencesDict = ListHelper.CalculateOccurences(leftList, rightList);
+int totalSimilarity = ListHelper.CalcualteTotalSimilarity(leftList, occurencesDict);
+Console.WriteLine(totalSimilarity);
